@@ -1,145 +1,231 @@
-// Team cards
-const cards = document.querySelectorAll(".team-card");
+// ===============================
+// TEAM SP — INTERACTIONS
+// ===============================
 
-// Buttons
-const nextBtn = document.getElementById("nextBtn");
-const prevBtn = document.getElementById("prevBtn");
+document.addEventListener("DOMContentLoaded", () => {
 
-// Counter
-const currentNumber = document.getElementById("currentNumber");
+  // -------------------------------
+  // TEAM CAROUSEL
+  // -------------------------------
 
-// Starting member
-let currentIndex = 2;
+  const track = document.querySelector(".team-track");
+  const cards = document.querySelectorAll(".member-card");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
+  const counter = document.querySelector("#current-slide");
 
+  let currentIndex = 3; // Subodh Premi starts as active
 
-// Update the carousel
-function updateCarousel() {
+  function updateCarousel() {
+    if (!track || !cards.length) return;
 
     cards.forEach((card, index) => {
+      card.classList.toggle("active", index === currentIndex);
+    });
 
-        // Distance from the active card
-        let position = index - currentIndex;
+    const activeCard = cards[currentIndex];
 
-        // Keep positions inside the 5-card range
-        if (position > 2) {
-            position -= 5;
+    if (activeCard) {
+      activeCard.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+        inline: "center"
+      });
+    }
+
+    if (counter) {
+      counter.textContent = String(currentIndex + 1).padStart(2, "0");
+    }
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      currentIndex--;
+
+      if (currentIndex < 0) {
+        currentIndex = cards.length - 1;
+      }
+
+      updateCarousel();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      currentIndex++;
+
+      if (currentIndex >= cards.length) {
+        currentIndex = 0;
+      }
+
+      updateCarousel();
+    });
+  }
+
+
+  // -------------------------------
+  // SWIPE SUPPORT
+  // -------------------------------
+
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  if (track) {
+
+    track.addEventListener("touchstart", (event) => {
+      touchStartX = event.changedTouches[0].screenX;
+    }, { passive: true });
+
+    track.addEventListener("touchend", (event) => {
+      touchEndX = event.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+  }
+
+  function handleSwipe() {
+    const difference = touchStartX - touchEndX;
+
+    // Ignore very small movements
+    if (Math.abs(difference) < 50) return;
+
+    if (difference > 0) {
+      // Swipe left
+      currentIndex++;
+
+      if (currentIndex >= cards.length) {
+        currentIndex = 0;
+      }
+    } else {
+      // Swipe right
+      currentIndex--;
+
+      if (currentIndex < 0) {
+        currentIndex = cards.length - 1;
+      }
+    }
+
+    updateCarousel();
+  }
+
+
+  // -------------------------------
+  // SCROLL REVEAL ANIMATION
+  // -------------------------------
+
+  const revealElements = document.querySelectorAll(
+    ".section-heading, .service-card, .capability-card, " +
+    ".team-mini-card, .vision-image, .vision-content, " +
+    ".vision-message, .process-step, .work-card, " +
+    ".contact-title, .contact-info, .contact-buttons"
+  );
+
+  revealElements.forEach((element) => {
+    element.classList.add("reveal");
+  });
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+
+      entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target);
         }
 
-        if (position < -2) {
-            position += 5;
-        }
+      });
+
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+  revealElements.forEach((element) => {
+    revealObserver.observe(element);
+  });
 
 
-        // Remove old active state
-        card.classList.remove("active");
+  // -------------------------------
+  // NAVBAR SCROLL EFFECT
+  // -------------------------------
+
+  const navbar = document.querySelector(".navbar");
+
+  function handleNavbar() {
+    if (!navbar) return;
+
+    if (window.scrollY > 40) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", handleNavbar, {
+    passive: true
+  });
+
+  handleNavbar();
 
 
-        // Center card
-        if (position === 0) {
+  // -------------------------------
+  // BACK TO TOP
+  // -------------------------------
 
-            card.classList.add("active");
+  const backToTop = document.querySelector("#backToTop");
 
-            card.style.transform =
-                "translateX(0) scale(1)";
+  if (backToTop) {
 
-            card.style.opacity = "1";
+    window.addEventListener("scroll", () => {
 
-            card.style.filter = "grayscale(0)";
+      if (window.scrollY > 500) {
+        backToTop.classList.add("visible");
+      } else {
+        backToTop.classList.remove("visible");
+      }
 
-            card.style.zIndex = "5";
-        }
+    }, {
+      passive: true
+    });
 
+    backToTop.addEventListener("click", () => {
 
-        // Card immediately on the left
-        else if (position === -1) {
-
-            card.style.transform =
-                "translateX(-170px) scale(.9)";
-
-            card.style.opacity = ".55";
-
-            card.style.filter = "grayscale(1)";
-
-            card.style.zIndex = "3";
-        }
-
-
-        // Card immediately on the right
-        else if (position === 1) {
-
-            card.style.transform =
-                "translateX(170px) scale(.9)";
-
-            card.style.opacity = ".55";
-
-            card.style.filter = "grayscale(1)";
-
-            card.style.zIndex = "3";
-        }
-
-
-        // Far left
-        else if (position === -2) {
-
-            card.style.transform =
-                "translateX(-330px) scale(.82)";
-
-            card.style.opacity = ".35";
-
-            card.style.filter = "grayscale(1)";
-
-            card.style.zIndex = "2";
-        }
-
-
-        // Far right
-        else if (position === 2) {
-
-            card.style.transform =
-                "translateX(330px) scale(.82)";
-
-            card.style.opacity = ".35";
-
-            card.style.filter = "grayscale(1)";
-
-            card.style.zIndex = "2";
-        }
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
 
     });
 
-
-    // Update counter
-    currentNumber.textContent =
-        String(currentIndex + 1).padStart(2, "0");
-}
+  }
 
 
+  // -------------------------------
+  // NAVIGATION LINK ACTIVE EFFECT
+  // -------------------------------
 
-// NEXT BUTTON
-nextBtn.addEventListener("click", function () {
+  const navLinks = document.querySelectorAll(".nav-links a");
 
-    currentIndex++;
+  navLinks.forEach((link) => {
 
-    if (currentIndex >= cards.length) {
-        currentIndex = 0;
-    }
+    link.addEventListener("click", () => {
 
-    updateCarousel();
+      navLinks.forEach((item) => {
+        item.classList.remove("active");
+      });
+
+      link.classList.add("active");
+
+    });
+
+  });
+
+
+  // -------------------------------
+  // INITIAL CAROUSEL STATE
+  // -------------------------------
+
+  updateCarousel();
+
 });
-
-
-// PREVIOUS BUTTON
-prevBtn.addEventListener("click", function () {
-
-    currentIndex--;
-
-    if (currentIndex < 0) {
-        currentIndex = cards.length - 1;
-    }
-
-    updateCarousel();
-});
-
-
-// First load
-updateCarousel();
