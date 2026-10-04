@@ -1376,3 +1376,216 @@ footer p {
     transition-duration: 0.01ms !important;
   }
 }
+/* =========================================
+   FINAL MOBILE + CAROUSEL FIX
+   ========================================= */
+
+/* Never allow hidden content */
+.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Scroll animation */
+.service-card,
+.capability-card,
+.team-mini-card,
+.vision-image,
+.vision-content,
+.vision-message,
+.process-step,
+.work-card,
+.contact-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.service-card.show,
+.capability-card.show,
+.team-mini-card.show,
+.vision-image.show,
+.vision-content.show,
+.vision-message.show,
+.process-step.show,
+.work-card.show,
+.contact-item.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================================
+   TEAM CAROUSEL
+   ========================================= */
+
+.team-slider {
+  width: 100%;
+  max-width: 1100px;
+  margin: 40px auto 0;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.team-track {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 15px 20px 25px;
+  scrollbar-width: none;
+}
+
+.team-track::-webkit-scrollbar {
+  display: none;
+}
+
+.member-card {
+  flex: 0 0 220px;
+  width: 220px;
+  overflow: hidden;
+  border-radius: 22px;
+  scroll-snap-align: center;
+  transition: 0.35s ease;
+}
+
+.member-card img {
+  width: 100%;
+  height: 280px;
+  display: block;
+  object-fit: cover;
+}
+
+.member-card.active {
+  transform: translateY(-8px) scale(1.03);
+}
+
+
+/* Carousel buttons */
+
+.slider-btn {
+  flex: 0 0 45px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.35);
+  cursor: pointer;
+}
+
+
+/* =========================================
+   WORK CARDS
+   ========================================= */
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.work-card {
+  min-height: 280px;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+  .navbar {
+    padding: 10px 12px;
+  }
+
+  .nav-inner {
+    gap: 8px;
+  }
+
+  .nav-links {
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .nav-links a {
+    font-size: 10px;
+  }
+
+  .team-btn {
+    white-space: nowrap;
+    font-size: 11px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-bottom: 50px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 12vw, 70px);
+  }
+
+  .team-head-card {
+    width: min(92%, 360px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .head-image {
+    width: 100%;
+    height: auto;
+    max-height: 430px;
+    object-fit: cover;
+  }
+
+  .team-slider {
+    gap: 6px;
+  }
+
+  .team-track {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .member-card {
+    flex-basis: 190px;
+    width: 190px;
+  }
+
+  .member-card img {
+    height: 250px;
+  }
+
+  .slider-btn {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .work-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =========================================
+   BACK TO TOP
+   ========================================= */
+
+#backToTop {
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+#backToTop.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
