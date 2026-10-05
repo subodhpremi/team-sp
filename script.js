@@ -84,7 +84,7 @@ addEventListener("resize", render);
 render();
 
 /* ---------- Team grid ---------- */
-$("tgrid").innerHTML = TEAM.map((m) =>
+$("tgrid").innerHTML = TEAM.filter((m) => !m.head).map((m) =>
   `<div class="tcard rv"><img src="${src(m.f)}" alt="${m.n}" loading="lazy"><div><b>${m.n}</b><span>${m.r}</span></div></div>`
 ).join("");
 
