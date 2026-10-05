@@ -114,7 +114,7 @@ box-shadow:0 12px 30px rgba(10,79,214,.25);transition:.4s var(--ease)}
 blockquote{font-size:1.25rem;margin-bottom:16px}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px!important}
 .dark .pill{color:#fff;background:rgba(255,255,255,.08)}
-.sign{width:min(100%,300px);aspect-ratio:2.4/1;margin-top:18px;border-radius:18px;background:url("My%20signature.png") 53.3% 47.2%/155.1% auto no-repeat rgba(255,255,255,.92);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.sign{width:min(100%,300px);aspect-ratio:2.4/1;margin-top:18px;border-radius:18px;background:url("My%20Signature.png") 53.3% 47.2%/155.1% auto no-repeat rgba(255,255,255,.92);box-shadow:0 10px 30px rgba(0,0,0,.25)}
 
 /* Approach */
 .steps{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative}
