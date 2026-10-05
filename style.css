@@ -1589,3 +1589,361 @@ footer p {
   opacity: 1;
   pointer-events: auto;
 }
+/* =========================================
+   PREMIUM TEAM CAROUSEL
+========================================= */
+
+.team-slider {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 45px auto 0;
+  overflow: hidden;
+  padding: 25px 0 10px;
+}
+
+.team-track {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: max-content;
+  will-change: transform;
+}
+
+.member-card {
+  position: relative;
+  flex: 0 0 210px;
+  height: 310px;
+  overflow: hidden;
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+
+  box-shadow:
+    0 15px 40px rgba(0, 40, 90, 0.12);
+
+  transform: scale(0.82);
+  opacity: 0.42;
+
+  transition:
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.65s ease,
+    filter 0.65s ease,
+    box-shadow 0.65s ease;
+}
+
+.member-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.member-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 15, 45, 0.9),
+    rgba(0, 20, 60, 0.05) 60%
+  );
+  pointer-events: none;
+}
+
+.member-info {
+  position: absolute;
+  z-index: 2;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  color: white;
+}
+
+.member-info h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.member-info p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  opacity: 0.82;
+}
+
+/* CENTER MEMBER */
+
+.member-card.active {
+  transform: scale(1);
+  opacity: 1;
+  filter: none;
+
+  box-shadow:
+    0 25px 60px rgba(0, 100, 190, 0.25),
+    0 0 0 2px rgba(40, 190, 255, 0.18);
+}
+
+/* SIDE MEMBERS */
+
+.member-card.position-left,
+.member-card.position-right {
+  transform: scale(0.84);
+  opacity: 0.62;
+  filter: saturate(0.7);
+}
+
+.member-card.far-left,
+.member-card.far-right {
+  transform: scale(0.72);
+  opacity: 0.18;
+  filter: blur(1px) saturate(0.5);
+}
+
+/* TEAM HEAD BADGE */
+
+.member-card.active:first-of-type::before {
+  content: "♛ TEAM HEAD";
+}
+
+.member-card.active img[src*="Subodh Premi"]::before {
+  content: "";
+}
+
+.member-card img[src*="Subodh Premi"] {
+  position: relative;
+}
+
+/* Create crown badge only when Subodh is active */
+.member-card:has(img[src*="Subodh Premi"]).active::before {
+  content: "♛  TEAM HEAD";
+  position: absolute;
+  z-index: 5;
+
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 7px 13px;
+  border-radius: 999px;
+
+  color: white;
+  background: rgba(0, 190, 255, 0.9);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 180, 255, 0.4);
+}
+
+/* ARROWS */
+
+.slider-btn {
+  position: absolute;
+  z-index: 10;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 46px;
+  height: 46px;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.75);
+  color: #06145f;
+
+  font-size: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 30px rgba(0, 40, 100, 0.12);
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.slider-btn:hover {
+  transform: translateY(-50%) scale(1.08);
+  background: white;
+  box-shadow:
+    0 12px 35px rgba(0, 150, 255, 0.25);
+}
+
+.slider-btn.prev {
+  left: 10px;
+}
+
+.slider-btn.next {
+  right: 10px;
+}
+
+/* COUNTER */
+
+.slider-counter {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+/* SWIPE TEXT */
+
+.drag-text {
+  margin-top: 10px;
+  text-align: center;
+
+  font-size: 9px;
+  letter-spacing: 2px;
+  opacity: 0.55;
+}
+
+/* =========================================
+   SCROLL REVEAL
+========================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   BACK TO TOP
+========================================= */
+
+#backToTop {
+  position: fixed;
+  right: 18px;
+  bottom: 20px;
+
+  width: 44px;
+  height: 44px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #071a75;
+  color: white;
+
+  font-size: 18px;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transform: translateY(10px);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  z-index: 999;
+}
+
+#backToTop.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .team-slider {
+    margin-top: 30px;
+    padding: 15px 0 5px;
+  }
+
+  .team-track {
+    gap: 12px;
+  }
+
+  .member-card {
+    flex-basis: 210px;
+    height: 300px;
+    border-radius: 22px;
+  }
+
+  .member-card.active {
+    transform: scale(1);
+  }
+
+  .member-card.position-left,
+  .member-card.position-right {
+    transform: scale(0.78);
+    opacity: 0.55;
+  }
+
+  .member-card.far-left,
+  .member-card.far-right {
+    transform: scale(0.7);
+    opacity: 0.12;
+  }
+
+  .slider-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 17px;
+  }
+
+  .slider-btn.prev {
+    left: 5px;
+  }
+
+  .slider-btn.next {
+    right: 5px;
+  }
+
+  .member-info {
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+  }
+
+  .member-info h3 {
+    font-size: 16px;
+  }
+
+  .member-info p {
+    font-size: 11px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .member-card,
+  .team-track,
+  .reveal,
+  .slider-btn {
+    transition: none !important;
+  }
+     }
