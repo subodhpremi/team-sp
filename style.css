@@ -90,7 +90,7 @@ background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 0 20px r
 .caps .wide{grid-column:span 2}
 
 /* Team grid */
-.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px}
 .tcard{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:3/4;border:1px solid rgba(47,208,255,.4);
 box-shadow:0 12px 30px rgba(10,79,214,.25);transition:.4s var(--ease)}
 .tcard:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(47,208,255,.4)}
@@ -114,7 +114,7 @@ box-shadow:0 12px 30px rgba(10,79,214,.25);transition:.4s var(--ease)}
 blockquote{font-size:1.25rem;margin-bottom:16px}
 .tags{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px!important}
 .dark .pill{color:#fff;background:rgba(255,255,255,.08)}
-.sign{font-family:"Brush Script MT",cursive;font-size:2rem;margin-top:14px;color:var(--cyan)}
+.sign{width:min(100%,300px);aspect-ratio:2.4/1;margin-top:18px;border-radius:18px;background:url("My%20signature.png") 53.3% 47.2%/155.1% auto no-repeat rgba(255,255,255,.92);box-shadow:0 10px 30px rgba(0,0,0,.25)}
 
 /* Approach */
 .steps{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative}
