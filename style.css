@@ -42,7 +42,7 @@ background:radial-gradient(circle at 50% 30%,#bfe6ff,transparent 60%),linear-gra
 @keyframes up{from{opacity:0;transform:translateY(24px)}}
 
 /* ===== Carousel ===== */
-.carousel{position:relative;margin:34px auto 0;height:calc(var(--w)*1.33 + 50px);max-width:1100px;
+.carousel{position:relative;margin:34px auto 0;height:calc(var(--w)*1.33 + 60px);max-width:1100px;
 touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
 .carousel.drag{cursor:grabbing}
 .stage{position:absolute;inset:44px 0 0}
@@ -60,11 +60,11 @@ transition:transform .65s var(--ease),opacity .65s var(--ease),filter .65s var(-
 font-size:.78rem;font-weight:700;letter-spacing:.12em;color:#fff;background:linear-gradient(135deg,var(--blue),var(--cyan));
 box-shadow:0 0 22px rgba(47,208,255,.6);opacity:0;transition:.5s var(--ease);pointer-events:none}
 .badge.show{opacity:1;transform:translate(-50%,0)}
-.arrow{position:absolute;top:50%;z-index:30;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.5);
+.arrow{flex:none;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.5);
 background:var(--blue);color:#fff;font-size:1.3rem;cursor:pointer;box-shadow:0 8px 24px rgba(10,79,214,.5);transition:.3s var(--ease)}
 .arrow:hover{transform:scale(1.1);background:#1b7bff}
-.prev{left:6px}.next{right:6px}
-.count{margin-top:18px;font-size:1rem;letter-spacing:.15em;color:var(--blue)}
+.ctrl{display:flex;justify-content:center;align-items:center;gap:22px;margin-top:22px}
+.count{min-width:90px;font-size:1rem;letter-spacing:.15em;color:var(--blue)}
 .count b{font-size:1.3rem}
 .bar{width:140px;height:3px;margin:10px auto;background:rgba(10,79,214,.18);border-radius:3px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--cyan);transition:width .6s var(--ease)}
@@ -144,7 +144,7 @@ background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 0 20px r
 .ct div{min-width:0}
 
 footer{display:flex;flex-direction:column;align-items:center;gap:8px;padding:40px 20px;text-align:center;background:var(--navy);color:#fff}
-footer img{height:58px;width:auto;padding:8px 16px;border-radius:14px;background:rgba(255,255,255,.95);object-fit:contain}footer span,footer a{color:var(--cyan);font-size:.88rem}footer small{opacity:.6}
+footer span,footer a{color:var(--cyan);font-size:.88rem}footer small{opacity:.6}
 .totop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--blue);color:#fff;
 opacity:0;pointer-events:none;transition:.3s;z-index:40}
 .totop.show{opacity:1;pointer-events:auto}
