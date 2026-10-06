@@ -18,7 +18,7 @@ h2{font-size:clamp(1.7rem,5vw,2.8rem);color:var(--navy)}
 display:flex;align-items:center;gap:16px;padding:8px 14px;border-radius:999px;
 background:rgba(255,255,255,.65);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
 border:1px solid rgba(255,255,255,.8);box-shadow:0 8px 30px rgba(10,79,214,.15);animation:drop .8s var(--ease) both}
-.brand img{height:38px;width:auto}
+.brand img{height:46px;width:auto}
 .nav nav{display:flex;gap:20px;margin:0 auto;font-size:.88rem}
 .nav nav a{padding:6px 2px;border-bottom:2px solid transparent;transition:.3s}
 .nav nav a:hover{border-color:var(--cyan);color:var(--blue)}
@@ -136,8 +136,9 @@ background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 0 20px r
 .i{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .stats .ico{width:64px;height:64px;border-radius:18px;margin:0 auto 14px}
 .stats .ico .i{width:30px;height:30px}
-.stats span:not(.ico){font-size:.85rem;font-weight:600;color:var(--navy)}
-.steps li>i{display:block;font-style:normal;font-weight:700;font-size:1.15rem;letter-spacing:.1em;color:var(--blue);margin-bottom:2px}
+.stats .n{display:flex;justify-content:center;align-items:baseline;gap:6px;flex-wrap:wrap}
+.stats .n span{font-size:.8rem;font-weight:600;letter-spacing:.06em;color:var(--navy)}
+.steps li>i{display:block;font-style:normal;font-weight:700;font-size:1.5rem;letter-spacing:.04em;color:var(--blue);margin-bottom:2px}
 .ct{display:flex;align-items:center;gap:16px}
 .ct .ico{margin:0;flex:none}
 .ct div{min-width:0}
